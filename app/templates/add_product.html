@@ -1,0 +1,29 @@
+{% extends 'template.html' %}
+
+{% block title %} Add new products {% endblock %}
+
+{% block body %}
+	<!-- <h2>You can add a product here and it will be recorded to our DB</h2> -->
+	<div class="prod_form">
+		<form action="{{url_for('main.add_product')}}" method="POST">
+			<p><input type="text" name="name" id="name" required placeholder="Product name"></p>
+			<p><input type="number" name="price" id="price" required placeholder="Product price"></p>
+			<p><input type="number" name="units" id="units" required placeholder="Available units">
+			<select name="units_specific" id="units_specific" required>
+				<option selected value="none">Select a measurement</option>
+				<option value="Kg(s)">Kilogram(s)</option>
+				<option value="Ltr(s)">Litre(s)</option>
+			</select></p>
+			<p>Product thumbnail:</p>
+			<p><input disabled type="file" name="image" id="image" accept="image/*"></p>
+			<p><select name="category" id="category" required>
+				<option selected value="none">Select product category</option>
+				<option value="animals">Animal products</option>
+				<option value="plants">Plant products</option>
+				<option value="equipments">Agricultural equipments</option>
+			</select></p>
+			<p><textarea name="description" id="description" required cols="30" rows="10">Enter short product description</textarea></p>
+			<p><button>Add product</button></p>
+		</form>
+	</div>
+{% endblock %}

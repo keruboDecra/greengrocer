@@ -1,0 +1,7 @@
+{% extends 'template.html' %}
+
+{% block title %} Not Found {% endblock %}
+
+{% block body %}
+	<h2>Not Found, the endpoint does not exist | Navigate <a href="{{url_for('main.home')}}">home</a></h2>
+{% endblock %}

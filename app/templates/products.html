@@ -1,0 +1,50 @@
+{% extends 'template.html' %}
+
+{% block title %} All products {% endblock %}
+
+{% block body %}
+	<form class="filter_search" action="{{url_for('main.products')}}" method="POST">
+		<input type="search" name="keyword_search" placeholder="Type in a search keyword">
+		<!-- <input type="number" name="cost_filter" id="cost_filter" placeholder="Enter cost in Ksh"> -->
+		<select name="location_filter" id="location_filter">
+			<option selected value="">Filter by location</option>
+			{% for user in users%}
+				{% if user.role == 'Seller' %}
+					<option value="{{user.location}}">{{user.location}}</option>
+				{% endif %}
+			{% endfor %}
+		</select>
+		<select name="category_filter" id="category_filter">
+			<option selected value="">Filter by category</option>
+			<option value="animal">Animal products</option>
+			<option value="plant">Plant products</option>
+			<option value="equipments">Agricultural equipments</option>
+		</select>
+		<button class="filter">Search</button>
+	</form>
+	<div class="products">
+		{% for product in products %}
+			<div class="prod_cart">
+				<h3>{{product.name}}</h3>
+				<p class="prod_description">{{product.description}}</p>
+				<h6>Unit price: {{product.price}}Ksh | Available: {% if product.quantity > 0 %}{{product.quantity}} {{product.unit}}{% else %}not available{% endif %}</h6>
+				<form action="{{url_for('main.cart', id=product.id)}}", method="POST">
+					{% if product.user_id != current_user.id %}
+						<p><input type="number" name="quantity" required id="quantity" placeholder="Quantity"></p>
+						<!-- <p><input class="hidden" type="text" name="product_id" disabled></p> -->
+					{% endif %}
+					<p>{% if product.user_id != current_user.id %}<button>Add to cart</button>{% endif %}</p>
+				</form>
+				<div class="owner_details">
+					{% if product.user_id == current_user.id %}
+						<p>From: You</p>
+						<img src="{{product.user.avatar_hash}}" width="20px" alt="">
+					{% else %}
+						<p>From: {{product.user.name}}</p>
+						<img src="{{product.user.avatar_hash}}" width="20px" alt="">
+					{% endif %}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

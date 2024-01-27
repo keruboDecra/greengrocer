@@ -1,0 +1,29 @@
+{% extends 'template.html' %}
+
+{% block title %} Your cart {% endblock %}
+
+{% block body %}
+	<!-- <h2>Manage your shoping cart right here</h2> -->
+	{% if carts %}
+		<div class="products">
+			{% for cart in carts %}
+				<div class="prod_cart">
+					<h3>{{cart.product.name}}</h3>
+					<p class="prod_description">{{cart.product.description}}</p>
+					<h6>Unit price: {{cart.product.price}}$ | Qt: {{cart.quantity}} {{cart.product.unit}}</h6>
+					<h6>Total price: {{ cart.quantity * cart.product.price }}Ksh</h6>
+					<p><a href="{{url_for('main.remove_cart', id=cart.id)}}"><button>Remove from cart</button></a></p>
+					<div class="owner_details">
+						<p>From: {{cart.product.user.name}}</p>
+						<img src="{{cart.product.user.avatar_hash}}" width="20px" alt="">
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="checkout">
+			<button disabled>Check out</button>
+		</div>
+	{% else %}
+		<h2>Your shopping cart is empty</h2>
+	{% endif %}
+{% endblock %}

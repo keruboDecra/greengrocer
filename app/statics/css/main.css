@@ -1,0 +1,355 @@
+body{
+    margin: 0;
+    /* font-family: 'Montserrat', sans-serif; */
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F9FBE7;
+    /* background-color: #F1F8E9; */
+    /* background-color: #E8F5E9; */
+}
+
+header, .main_wrapper, footer .container{
+    width: 65%;
+    margin: auto;
+}
+
+main{
+    position: relative;
+}
+
+main::after {
+    content: "";
+    background: url(/statics/images/clip-shopping.png);
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+}
+
+.main_wrapper{
+    min-height: 80vh;
+    padding-bottom: 20px;
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a{
+    text-decoration: none;
+}
+
+nav li{
+    margin-left: 10px;
+    padding: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+nav li:hover{
+    text-decoration: underline;
+}
+
+button, input, .flash_message, .independent, .company, textarea, select{
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    border: 1px solid gainsboro;
+    border-radius: 3px;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.logo{
+    font-size: 35px;
+    font-weight: bold;
+    color: #317447;
+}
+
+header{
+    min-height: 15vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login{
+    background-color: #5C636A;
+    font-weight: bold;
+    color: white;
+}
+
+.register, .logout{
+    background-color: #317447;
+    font-weight: bold;
+    color: white;
+}
+
+main a, nav a{
+    color: #317447;
+}
+
+footer a, .profile-cart a, .logo a{
+    text-decoration: none;
+    color: inherit;
+}
+
+ul{
+    list-style: none;
+    list-style-type: none;
+    display: inline-block;
+}
+
+footer{
+    min-height: 30vh;
+    background-color: #212121;
+    color: gray;
+}
+
+footer .container{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 10px;
+    padding-top: 10px;
+}
+
+footer button{
+    background-color: #317447;
+    border: none;
+    color: white;
+}
+
+footer .logo{
+    margin: 16px 0;
+}
+
+footer a{
+    text-decoration: underline;
+}
+
+footer .logo{
+    font-size: 30px;
+}
+
+.flash_message{
+    background-color: #C8E6C9;
+}
+
+.close_flash{
+    float: right;
+}
+
+.close_flash:hover{
+    cursor: pointer;
+}
+
+.auth{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-cart{
+    display: none;
+}
+
+.in-btn{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.in-btn button, .in-btn img{
+    margin-left: 10px ;
+}
+
+.profile:focus + .profile-cart{
+    z-index: 100;
+    display: block;
+    position: absolute;
+    width: 150px;
+    padding: 10px 0px;
+    right: 50px;
+    box-sizing: border-box;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #F9FBE7;
+    border: 1px solid gainsboro;
+    box-shadow: 0px 0px 5px #C8E6C9;
+}
+
+.profile-cart ul{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.profile-cart li{
+    padding: 5px 5px;
+    display: flex;
+}
+
+.profile-cart li:hover{
+    cursor: pointer;
+    background-color: #C8E6C9;
+}
+
+.avatar{
+    border-radius: 20px;
+    margin: 0;
+}
+
+.independent, .company{
+    margin: 0px 4px;
+}
+
+.color{
+    background-color: #C8E6C9;
+}
+
+.independent:hover, .company:hover{
+    cursor: pointer;
+}
+
+.hidden{
+    display: none;
+}
+
+.main_card{
+    background-color: #F1F8E9;
+    padding: 10px 20px;
+    margin: 10px 0px;
+    border-radius: 5px;
+    width: fit-content;
+    border: 1px solid #E8F5E9;
+}
+
+.main_card:hover{
+    background-color: #E8F5E9;
+    box-shadow: 1px 1px 5px #E8F5E9; 
+}
+
+.prod:hover + div{
+    color: rebeccapurple;
+}
+
+.pr_h{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid gainsboro;
+    padding-bottom: 20px;
+}
+
+.filter_search{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-shrink: 1;
+    align-items: center;
+    justify-content: flex-end;
+    border-bottom: 1px solid gainsboro;
+    padding-bottom: 10px;
+}
+
+.filter_search select, .filter_search button{
+    margin-left: 15px;
+}
+
+.products{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 10px;
+    margin-top: 20px;
+}
+
+.prod_cart{
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: #F1F8E9;
+}
+
+.prod_cart h3{
+    border-bottom: 1px solid gainsboro;
+}
+
+.prod_cart button{
+    margin-right: 5px;
+}
+
+.prod_cart:hover{
+    cursor: pointer;
+    transform: scale(1.01);
+    background-color: #F1F8E9;
+}
+
+.prod_description{
+    font-size: 15px;
+}
+
+.owner_details{
+    font-size: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.owner_details img{
+    border-radius: 20px;
+    margin-left: 5px;
+}
+
+.owner_details p{
+    background-color: #C8E6C9;
+    border-radius: 3px;
+    padding: 3px 5px;
+}
+
+.checkout{
+    padding-top: 10px;
+    margin-top: 20px;
+    border-top: 1px solid gainsboro;
+}
+
+.personal_quote{
+    font-size: 8px;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+}
+
+.cart span{
+    display: none;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.cart{
+    position: relative;
+}
+
+.cart:hover span{
+    display: block;
+    position: absolute;
+    top: -8px;
+    left: 20px;
+}

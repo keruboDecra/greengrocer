@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/statics/css/main.css">
+    <link rel="shortcut icon" href="/statics/images/icons8-fast-cart-100.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="{{url_for('main.home')}}">GreenGrocer</a></div>
+        {% if current_user.is_authenticated %}
+            <nav>
+                <ul>
+                    <a class="prod" href="{{url_for('main.home')}}"><li>Home</li></a>
+                    <a class="prod" href="{{url_for('main.products')}}"><li>Products</li></a>
+                    {% if current_user.role == 'Seller' %}
+                        <a href="{{url_for('main.user_products', id=current_user.id)}}"><li>Your products</li></a>
+                    {% endif %}
+                    <a class="cart" href="{{url_for('main.cart', id=current_user.id)}}"><li><img src="/statics/images/icons8-fast-cart-100.png" alt="Cart" width="25px"></li><span>Cart</span></a>
+                </ul>
+            </nav>
+            <div class="in-btn">
+                <div>
+                    <a href="{{url_for('auth.logout')}}"><button class="logout">Logout</button></a>
+                    {% set name = current_user.name.split('|') %}
+                    <button class="profile">{{name[0]}} </button>
+                    <div class="profile-cart">
+                        <ul>
+                            <a href=""><li>Your profile</li></a>
+                            <a href=""><li>Delete account</li></a>
+                        </ul>
+                    </div>
+                </div>
+                <img class="avatar" src="{{current_user.avatar_hash}}" width="40px" alt="User avatar">
+            </div>
+        {% else %}
+            <div class="auth-btn">
+                <a href="{{url_for('auth.login')}}"><button class="login">SignIn</button></a>
+                <a href="{{url_for('auth.register')}}"><button class="register">Register</button></a>
+            </div>
+        {% endif %}
+    </header>
+    <main>
+        <div class="main_wrapper">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="flash_message">{{ message }} <span class="close_flash">&#x2715</span></p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            {% block body %}
+            {% endblock %}
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="motto">
+                <p>&copy; GreenGrocer 2021</p>
+                <p>-- We create a connection between farmers and potential buyers.</p>
+            </div>
+            <div class="terms">
+                <a href="https://docs.google.com/document/d/1aShoUGBB29IuOPGBOOHB0Zh3oFfYYnu5hqMiy3xhl7M/edit?usp=sharing" target="_blank"><p>Terms and Conditions</p></a>
+                <a href="https://docs.google.com/document/d/1aShoUGBB29IuOPGBOOHB0Zh3oFfYYnu5hqMiy3xhl7M/edit?usp=sharing" target="_blank"><p>Privacy Policy</p></a>
+                <a href="{{url_for('auth.register_business')}}"><p>Become a Seller</p></a>
+            </div>
+            <div class="social">
+                <a href=""><p>Twitter</p></a>
+                <a href=""><p>Facebook</p></a>
+                <a href=""><p>Instagram</p></a>
+                <a href=""><p>LinkedIn</p></a>
+            </div>
+            <div class="letter">
+                <p><input type="email" name="email" placeholder="Provide your email" required></p>
+                <p><button disabled>Join our News Letter</button></p>
+            </div>
+            <p class="personal_quote">Designed&Implemented by <a href="mailto:murairicedric@gmail.com">Cédric Murairi</a</p>
+        </div>
+    </footer>
+    <script src="/statics/javascript/index.js"></script>
+</body>
+</html>

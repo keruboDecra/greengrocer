@@ -1,0 +1,7 @@
+{% extends 'template.html' %}
+
+{% block title %} Internal Error {% endblock %}
+
+{% block body %}
+	<h2>Oops! Internal Server Error | Navigate <a href="{{url_for('main.home')}}">home</a></h2>
+{% endblock %}

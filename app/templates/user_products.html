@@ -1,0 +1,20 @@
+{% extends 'template.html' %}
+
+{% block title %} Your products {% endblock %}
+
+{% block body %}
+	<h2 class="pr_h"><a href="{{url_for('main.add_product')}}"><button class="add_product_btn">Add a new product</button></a></h2>
+	<div class="products">
+		{% for product in products %}
+			<div class="prod_cart">
+				<h3>{{product.name}}</h3>
+				<p class="prod_description">{{product.description}}</p>
+				<h6>Unit price: {{product.price}}Ksh | Available: {% if product.quantity > 0 %}{{product.quantity}} {{product.unit}}{% else %}not available{% endif %}</h6>
+				<p>
+					<a href="{{url_for('main.remove_product', id=product.id)}}"><button>Remove product</button></a>
+					<!-- <a href=""><button disabled>Edit product</button></a> -->
+				</p>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

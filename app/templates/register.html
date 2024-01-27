@@ -1,0 +1,21 @@
+{% extends 'template.html' %}
+
+{% block title %} Register {% endblock %}
+
+{% block body %}
+	<div class="auth">
+		<form action="{{url_for('auth.register')}}" method="POST"></p>
+			<p><input type="name" name="name" id="name" placeholder="Name" required></p>
+			<p><input type="email" name="email" id="email" placeholder="Email" required></p>
+			<p><input type="password" name="password" id="password" placeholder="Password" required></p>
+			<p><input type="password" name="repeat-password" id="repeat-password" placeholder="Repeat password" required></p>
+			<p><input type="text" name="location" id="location" placeholder="Location" required></p>
+			<p><input type="text" name="country" id="country" placeholder="Country" required></p>
+			<p><button>Register</button></p>
+		</form>
+		<div>
+			<p>Already have an account? <a href="{{url_for('auth.login')}}">Login</a></p>
+			<p><a href="{{url_for('auth.register_business')}}">Start selling on GreenGrocer</a></p>
+		</div>
+	</div> 
+{% endblock %}
